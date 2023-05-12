@@ -19,13 +19,14 @@ fun Route.notificationRouting(service: OneSignalService) {
                 "Missing description",
                 status = HttpStatusCode.BadRequest
             )
+            val userIds = listOf("All")
 
             val success = service.send(
                 Notification(
-                    includeExternalUserIds = listOf("All"),
                     includedSegments = listOf("All"),
-                    contents = NotificationMessage(en = title),
-                    headings = NotificationMessage(en = description),
+                    includeExternalUserIds = userIds,
+                    contents = NotificationMessage(en = description),
+                    headings = NotificationMessage(en = title),
                     appId = OneSignalService.ONESIGNAL_APP_ID
                 )
             )
