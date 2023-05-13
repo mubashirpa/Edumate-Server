@@ -17,10 +17,10 @@ fun Route.notificationRouting(service: OneSignalService) {
 
             val success = service.send(
                 Notification(
-                    includedSegments = listOf("All"),
+                    includedSegments = listOf(""),
                     includeExternalUserIds = notificationRequest.userIds,
-                    contents = NotificationMessage(en = notificationRequest.title),
-                    headings = NotificationMessage(en = notificationRequest.description),
+                    contents = NotificationMessage(en = notificationRequest.description),
+                    headings = NotificationMessage(en = notificationRequest.title),
                     appId = OneSignalService.ONESIGNAL_APP_ID
                 )
             )
