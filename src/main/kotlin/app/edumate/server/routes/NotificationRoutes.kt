@@ -10,7 +10,10 @@ import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 
-fun Route.notificationRouting(service: OneSignalService) {
+fun Route.notificationRouting(
+    service: OneSignalService,
+    appId: String
+) {
     route("/notification") {
         post {
             val notificationRequest = call.receive<NotificationRequest>()
@@ -21,7 +24,7 @@ fun Route.notificationRouting(service: OneSignalService) {
                     includeExternalUserIds = notificationRequest.userIds,
                     contents = NotificationMessage(en = notificationRequest.description),
                     headings = NotificationMessage(en = notificationRequest.title),
-                    appId = OneSignalService.ONESIGNAL_APP_ID
+                    appId = appId
                 )
             )
 

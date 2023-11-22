@@ -9,8 +9,9 @@ import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
 
-fun main(args: Array<String>): Unit =
+fun main(args: Array<String>) {
     io.ktor.server.netty.EngineMain.main(args)
+}
 
 fun Application.module() {
     configureSerialization()
@@ -20,8 +21,10 @@ fun Application.module() {
             json()
         }
     }
-    val apiKey = environment.config.property("onesignal.api_key").getString()
+
+    val apiKey = environment.config.propertyOrNull("onesignal.api_key")?.getString().orEmpty()
+    val appId = environment.config.propertyOrNull("onesignal.app_id")?.getString().orEmpty()
     val service = OneSignalServiceImpl(client, apiKey)
 
-    configureRouting(service)
+    configureRouting(service, appId)
 }

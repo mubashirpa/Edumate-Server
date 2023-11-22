@@ -5,8 +5,11 @@ import app.edumate.server.routes.notificationRouting
 import io.ktor.server.application.*
 import io.ktor.server.routing.*
 
-fun Application.configureRouting(service: OneSignalService) {
+fun Application.configureRouting(
+    service: OneSignalService,
+    appId: String
+) {
     routing {
-        notificationRouting(service)
+        notificationRouting(service, appId)
     }
 }
