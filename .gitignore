@@ -34,3 +34,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Firebase ###
+src/main/resources/edu-mate-app-firebase-adminsdk.json
