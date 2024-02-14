@@ -1,0 +1,86 @@
+[
+  {
+    "alternateLink": "https://classroom.google.com/c/NTE4OTM4MTYxMzg1",
+    "courseState": "ACTIVE",
+    "creationTime": "2023-04-19T15:06:45.331Z",
+    "description": "This is DBMS",
+    "id": "518938161385",
+    "invitations": [
+      {
+        "emailAddress": "brucebanneroffl@gmail.com",
+        "role": "TEACHER"
+      }
+    ],
+    "name": "DBMS",
+    "ownerId": "107187678656139876727",
+    "photoUrl": "https://gstatic.com/classroom/themes/img_breakfast.jpg",
+    "room": "CSE",
+    "section": "A",
+    "students": [
+      {
+        "profile": {
+          "id": "107187678656139876727",
+          "name": {
+            "fullName": "Mubashir P A"
+          },
+          "emailAddress": "Mubashirmubajr11@gmail.com"
+        }
+      }
+    ],
+    "subject": "DBMS",
+    "teachers": [
+      {
+        "profile": {
+          "id": "107187678656139876727",
+          "name": {
+            "fullName": "Mubashir P A"
+          },
+          "emailAddress": "Mubashirmubajr11@gmail.com"
+        }
+      }
+    ],
+    "updateTime": "2024-02-13T11:31:03.286Z"
+  },
+  {
+    "alternateLink": "https://classroom.google.com/c/NTE4OTM4MTYxMzg1",
+    "courseState": "ACTIVE",
+    "creationTime": "2023-04-19T15:06:45.331Z",
+    "description": "This is Python Programming",
+    "id": "518938161362",
+    "invitations": [
+      {
+        "emailAddress": "brucebanneroffl@gmail.com",
+        "role": "TEACHER"
+      }
+    ],
+    "name": "Python Programming",
+    "ownerId": "107187678656139876727",
+    "photoUrl": "https://gstatic.com/classroom/themes/img_breakfast.jpg",
+    "room": "CSE",
+    "section": "A",
+    "students": [
+      {
+        "profile": {
+          "id": "107187678656139876727",
+          "name": {
+            "fullName": "Mubashir P A"
+          },
+          "emailAddress": "Mubashirmubajr11@gmail.com"
+        }
+      }
+    ],
+    "subject": "Python Programming",
+    "teachers": [
+      {
+        "profile": {
+          "id": "107187678656139876727",
+          "name": {
+            "fullName": "Mubashir P A"
+          },
+          "emailAddress": "Mubashirmubajr11@gmail.com"
+        }
+      }
+    ],
+    "updateTime": "2024-02-13T11:31:03.286Z"
+  }
+]
