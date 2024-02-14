@@ -1,9 +1,7 @@
 package app.edumate.server
 
 import app.edumate.server.data.remote.OneSignalServiceImpl
-import app.edumate.server.plugins.configureFirebase
-import app.edumate.server.plugins.configureRouting
-import app.edumate.server.plugins.configureSerialization
+import app.edumate.server.plugins.*
 import com.google.firebase.cloud.FirestoreClient
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
@@ -18,10 +16,10 @@ fun main(args: Array<String>) {
 }
 
 fun Application.module() {
-    install(CORS) {
-        anyHost()
-    }
-    install(Resources)
+    configureCors()
+    configureSerialization()
+    configureResources()
+    configureFirebase()
 
     val client =
         HttpClient(CIO) {
@@ -29,10 +27,6 @@ fun Application.module() {
                 json()
             }
         }
-
-    configureSerialization()
-    configureFirebase()
-
     val oneSignalApiKey = environment.config.propertyOrNull("onesignal.api_key")?.getString().orEmpty()
     val oneSignalAppId = environment.config.propertyOrNull("onesignal.app_id")?.getString().orEmpty()
     val oneSignalService = OneSignalServiceImpl(client, oneSignalApiKey)
