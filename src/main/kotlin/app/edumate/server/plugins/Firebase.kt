@@ -10,10 +10,11 @@ fun Application.configureFirebase() {
     val databaseUrl = environment.config.propertyOrNull("firebase.database_url")?.getString().orEmpty()
     val refreshToken = FileInputStream("src/main/resources/edu-mate-app-firebase-adminsdk.json")
 
-    val options = FirebaseOptions.builder()
-        .setCredentials(GoogleCredentials.fromStream(refreshToken))
-        .setDatabaseUrl(databaseUrl)
-        .build()
+    val options =
+        FirebaseOptions.builder()
+            .setCredentials(GoogleCredentials.fromStream(refreshToken))
+            .setDatabaseUrl(databaseUrl)
+            .build()
 
     FirebaseApp.initializeApp(options)
 }
