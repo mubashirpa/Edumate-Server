@@ -1,9 +1,8 @@
 package app.edumate.server.data.remote
 
-import app.edumate.server.models.Notification
+import app.edumate.server.models.notification.Notification
 
 interface OneSignalService {
-
     suspend fun send(notification: Notification): Boolean
 
     companion object {

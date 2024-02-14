@@ -1,4 +1,4 @@
-package app.edumate.server.models
+package app.edumate.server.models.notification
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -12,5 +12,5 @@ data class Notification(
     val contents: NotificationMessage,
     val headings: NotificationMessage,
     @SerialName("app_id")
-    val appId: String
+    val appId: String,
 )
