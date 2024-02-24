@@ -1,4 +1,4 @@
-package app.edumate.server.models.courses
+package app.edumate.server.models.classroom.courses
 
 enum class CourseState {
     ACTIVE,

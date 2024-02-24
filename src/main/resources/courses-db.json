@@ -12,73 +12,49 @@
       }
     ],
     "name": "DBMS",
-    "ownerId": "107187678656139876727",
+    "ownerId": "NxyHm4f8Cedi9vRFf3l54WrHr1m2",
     "photoUrl": "https://gstatic.com/classroom/themes/img_breakfast.jpg",
     "room": "CSE",
     "section": "A",
     "students": [
       {
-        "profile": {
-          "id": "107187678656139876727",
-          "name": {
-            "fullName": "Mubashir P A"
-          },
-          "emailAddress": "Mubashirmubajr11@gmail.com"
-        }
+        "userId": "01HQ3NZ2RB87SEHPJK1TGDA157"
+      },
+      {
+        "userId": "01HQ3NZ2RNP2HXMDRD0F7GPCRK"
       }
     ],
     "subject": "DBMS",
     "teachers": [
       {
-        "profile": {
-          "id": "107187678656139876727",
-          "name": {
-            "fullName": "Mubashir P A"
-          },
-          "emailAddress": "Mubashirmubajr11@gmail.com"
-        }
+        "userId": "NxyHm4f8Cedi9vRFf3l54WrHr1m2"
       }
     ],
     "updateTime": "2024-02-13T11:31:03.286Z"
   },
   {
     "alternateLink": "https://classroom.google.com/c/NTE4OTM4MTYxMzg1",
-    "courseState": "ACTIVE",
+    "courseState": "ARCHIVED",
     "creationTime": "2023-04-19T15:06:45.331Z",
     "description": "This is Python Programming",
     "id": "518938161362",
-    "invitations": [
-      {
-        "emailAddress": "brucebanneroffl@gmail.com",
-        "role": "TEACHER"
-      }
-    ],
     "name": "Python Programming",
-    "ownerId": "107187678656139876727",
+    "ownerId": "01HQ3NZ2RB87SEHPJK1TGDA157",
     "photoUrl": "https://gstatic.com/classroom/themes/img_breakfast.jpg",
     "room": "CSE",
     "section": "A",
     "students": [
       {
-        "profile": {
-          "id": "107187678656139876727",
-          "name": {
-            "fullName": "Mubashir P A"
-          },
-          "emailAddress": "Mubashirmubajr11@gmail.com"
-        }
+        "userId": "NxyHm4f8Cedi9vRFf3l54WrHr1m2"
       }
     ],
     "subject": "Python Programming",
     "teachers": [
       {
-        "profile": {
-          "id": "107187678656139876727",
-          "name": {
-            "fullName": "Mubashir P A"
-          },
-          "emailAddress": "Mubashirmubajr11@gmail.com"
-        }
+        "userId": "01HQ3NZ2RB87SEHPJK1TGDA157"
+      },
+      {
+        "userId": "01HQ3NZ2RNP2HXMDRD0F7GPCRK"
       }
     ],
     "updateTime": "2024-02-13T11:31:03.286Z"
