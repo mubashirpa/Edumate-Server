@@ -11,6 +11,7 @@ data class Course(
     val courseState: CourseState? = null,
     val creationTime: String? = null,
     val description: String? = null,
+    val enrollmentCode: String? = null,
     val id: String? = null,
     val name: String? = null,
     var owner: UserProfile? = null,
@@ -18,8 +19,8 @@ data class Course(
     val photoUrl: String? = null,
     val room: String? = null,
     val section: String? = null,
-    val students: List<Student>? = null,
+    var students: MutableList<Student>? = null,
     val subject: String? = null,
-    val teachers: List<Teacher>? = null,
+    var teachers: MutableList<Teacher>? = null,
     val updateTime: String? = null,
 )

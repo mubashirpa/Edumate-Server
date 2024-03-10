@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Student(
-    val courseId: String? = null,
+    var courseId: String? = null,
     var profile: UserProfile? = null,
     val studentWorkFolder: DriveFolder? = null,
     val userId: String? = null,
