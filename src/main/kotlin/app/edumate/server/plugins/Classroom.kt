@@ -1,6 +1,5 @@
 package app.edumate.server.plugins
 
-import app.edumate.server.models.classroom.courseWork.CourseWork
 import app.edumate.server.models.classroom.courses.Course
 import app.edumate.server.models.userProfiles.UserProfile
 import kotlinx.serialization.json.Json
@@ -9,7 +8,6 @@ import java.io.InputStreamReader
 
 class Classroom {
     val coursesStorage: MutableList<Course> = fetchCourses().toMutableList()
-    val courseWorkStorage: MutableList<CourseWork> = mutableListOf()
     val usersStorage: MutableList<UserProfile> = fetchUsers().toMutableList()
     val images =
         listOf(
