@@ -1,21 +1,24 @@
 package app.edumate.server.routes
 
+import app.edumate.server.core.utils.DatabaseUtils
+import app.edumate.server.core.utils.DateTimeUtils
+import app.edumate.server.core.utils.FirebaseUtils
 import app.edumate.server.models.classroom.courses.Course
 import app.edumate.server.models.classroom.courses.CourseState
 import app.edumate.server.models.classroom.courses.CoursesDto
+import app.edumate.server.models.classroom.teachers.Teacher
 import app.edumate.server.models.userProfiles.UserProfile
+import app.edumate.server.plugins.Classroom
+import com.google.firebase.auth.FirebaseAuthException
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
-import kotlinx.serialization.json.Json
-import java.io.FileInputStream
-import java.io.InputStreamReader
 
-fun Route.coursesRouting() {
-    val coursesStorage: MutableList<Course> = fetchCourses().toMutableList()
-    val usersStorage: MutableList<UserProfile> = fetchUsers().toMutableList()
+fun Route.coursesRouting(classroom: Classroom) {
+    val coursesStorage = classroom.coursesStorage
+    val usersStorage = classroom.usersStorage
 
     route("/v1/courses") {
         post {
@@ -30,12 +33,54 @@ fun Route.coursesRouting() {
                     status = HttpStatusCode.BadRequest,
                 )
             }
+            val userId =
+                try {
+                    FirebaseUtils.getUserIdFromToken(token)
+                } catch (e: FirebaseAuthException) {
+                    when (e.authErrorCode.name) {
+                        "EXPIRED_ID_TOKEN" -> return@post call.respondText(
+                            text = "The access token is expired",
+                            status = HttpStatusCode.Unauthorized,
+                        )
 
+                        "REVOKED_ID_TOKEN" -> return@post call.respondText(
+                            text = "The access token has been revoked",
+                            status = HttpStatusCode.Unauthorized,
+                        )
+
+                        else -> return@post call.respondText(
+                            text = "The provided access token is not valid",
+                            status = HttpStatusCode.Unauthorized,
+                        )
+                    }
+                }
             val course = call.receive<Course>()
-            coursesStorage.add(course)
+
+            val id = DatabaseUtils.generateId(12)
+            val teachers = mutableListOf(Teacher(userId = userId))
+            val time = DateTimeUtils.getCurrentDateTime("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+            val createdCourse =
+                Course(
+                    alternateLink = "https://classroom.google.com/c/$id",
+                    courseState = course.courseState ?: CourseState.PROVISIONED,
+                    creationTime = time,
+                    enrollmentCode = null, // TODO
+                    id = id,
+                    name = course.name,
+                    ownerId = userId,
+                    photoUrl = classroom.images.random(),
+                    room = course.room,
+                    section = course.section,
+                    students = mutableListOf(),
+                    subject = course.subject,
+                    teachers = teachers,
+                    updateTime = time,
+                )
+
+            coursesStorage.add(createdCourse)
             call.respond(
                 status = HttpStatusCode.Created,
-                message = course,
+                message = createdCourse,
             )
         }
         delete("/{id}") {
@@ -50,14 +95,34 @@ fun Route.coursesRouting() {
                     status = HttpStatusCode.BadRequest,
                 )
             }
+            val userId =
+                try {
+                    FirebaseUtils.getUserIdFromToken(token)
+                } catch (e: FirebaseAuthException) {
+                    when (e.authErrorCode.name) {
+                        "EXPIRED_ID_TOKEN" -> return@delete call.respondText(
+                            text = "The access token is expired",
+                            status = HttpStatusCode.Unauthorized,
+                        )
 
+                        "REVOKED_ID_TOKEN" -> return@delete call.respondText(
+                            text = "The access token has been revoked",
+                            status = HttpStatusCode.Unauthorized,
+                        )
+
+                        else -> return@delete call.respondText(
+                            text = "The provided access token is not valid",
+                            status = HttpStatusCode.Unauthorized,
+                        )
+                    }
+                }
             val id =
                 call.parameters["id"] ?: return@delete call.respondText(
                     text = "You must specify an id",
                     status = HttpStatusCode.BadRequest,
                 )
 
-            if (coursesStorage.removeIf { it.id == id && it.ownerId == token }) {
+            if (coursesStorage.removeIf { it.id == id && it.ownerId == userId }) {
                 call.respondText(text = "The course with id $id was deleted", status = HttpStatusCode.Accepted)
             } else if (coursesStorage.any { it.id == id }) {
                 call.respondText(
@@ -80,19 +145,42 @@ fun Route.coursesRouting() {
                     status = HttpStatusCode.BadRequest,
                 )
             }
+            val userId =
+                try {
+                    FirebaseUtils.getUserIdFromToken(token)
+                } catch (e: FirebaseAuthException) {
+                    when (e.authErrorCode.name) {
+                        "EXPIRED_ID_TOKEN" -> return@get call.respondText(
+                            text = "The access token is expired",
+                            status = HttpStatusCode.Unauthorized,
+                        )
 
+                        "REVOKED_ID_TOKEN" -> return@get call.respondText(
+                            text = "The access token has been revoked",
+                            status = HttpStatusCode.Unauthorized,
+                        )
+
+                        else -> return@get call.respondText(
+                            text = "The provided access token is not valid",
+                            status = HttpStatusCode.Unauthorized,
+                        )
+                    }
+                }
             val id =
                 call.parameters["id"] ?: return@get call.respondText(
                     text = "You must specify an id",
                     status = HttpStatusCode.BadRequest,
                 )
+
             val course =
                 coursesStorage.find { it.id == id } ?: return@get call.respondText(
                     text = "No course with id $id",
                     status = HttpStatusCode.NotFound,
                 )
+            val havePermission =
+                course.students?.any { it.userId == userId } == true || course.teachers?.any { it.userId == userId } == true
 
-            if (course.students?.any { it.userId == token } == true || course.teachers?.any { it.userId == token } == true) {
+            if (havePermission) {
                 call.respond(course)
             } else {
                 call.respondText(
@@ -107,13 +195,34 @@ fun Route.coursesRouting() {
                     text = "No token provided",
                     status = HttpStatusCode.Unauthorized,
                 )
+            println("hello: $token") // TODO("Remove")
             if (token.isBlank()) {
                 return@get call.respondText(
                     text = "Only valid authentication supported",
                     status = HttpStatusCode.BadRequest,
                 )
             }
+            val userId =
+                try {
+                    FirebaseUtils.getUserIdFromToken(token)
+                } catch (e: FirebaseAuthException) {
+                    when (e.authErrorCode.name) {
+                        "EXPIRED_ID_TOKEN" -> return@get call.respondText(
+                            text = "The access token is expired",
+                            status = HttpStatusCode.Unauthorized,
+                        )
 
+                        "REVOKED_ID_TOKEN" -> return@get call.respondText(
+                            text = "The access token has been revoked",
+                            status = HttpStatusCode.Unauthorized,
+                        )
+
+                        else -> return@get call.respondText(
+                            text = "The provided access token is not valid",
+                            status = HttpStatusCode.Unauthorized,
+                        )
+                    }
+                }
             val courseStates =
                 call.parameters.getAll("courseStates") ?: listOf(
                     CourseState.ACTIVE.name,
@@ -121,12 +230,14 @@ fun Route.coursesRouting() {
                     CourseState.PROVISIONED.name,
                     CourseState.DECLINED.name,
                 )
+            val pageSize = call.parameters["pageSize"]?.toIntOrNull() ?: 20
+            val page = call.parameters["page"]?.toIntOrNull() ?: 0
             val studentId = call.parameters["studentId"]
             val teacherId = call.parameters["teacherId"]
 
             val courses =
                 listCourses(
-                    token = token,
+                    userId = userId,
                     coursesStorage = coursesStorage,
                     usersStorage = usersStorage,
                     courseStates = courseStates,
@@ -135,8 +246,7 @@ fun Route.coursesRouting() {
                 )
 
             if (coursesStorage.isNotEmpty()) {
-                val courseDto = CoursesDto(courses = courses)
-                call.respond(courseDto)
+                call.respond(getCoursesDto(courses, page, pageSize))
             } else {
                 call.respondText(text = "No courses found", status = HttpStatusCode.OK)
             }
@@ -153,24 +263,43 @@ fun Route.coursesRouting() {
                     status = HttpStatusCode.BadRequest,
                 )
             }
+            val userId =
+                try {
+                    FirebaseUtils.getUserIdFromToken(token)
+                } catch (e: FirebaseAuthException) {
+                    when (e.authErrorCode.name) {
+                        "EXPIRED_ID_TOKEN" -> return@put call.respondText(
+                            text = "The access token is expired",
+                            status = HttpStatusCode.Unauthorized,
+                        )
 
+                        "REVOKED_ID_TOKEN" -> return@put call.respondText(
+                            text = "The access token has been revoked",
+                            status = HttpStatusCode.Unauthorized,
+                        )
+
+                        else -> return@put call.respondText(
+                            text = "The provided access token is not valid",
+                            status = HttpStatusCode.Unauthorized,
+                        )
+                    }
+                }
             val id =
                 call.parameters["id"] ?: return@put call.respondText(
                     text = "You must specify an id",
                     status = HttpStatusCode.BadRequest,
                 )
+            val updatedCourse = call.receive<Course>()
+
             val index = coursesStorage.indexOfFirst { it.id == id }
 
             if (index == -1) {
                 call.respondText(text = "No course with id $id", status = HttpStatusCode.NotFound)
             } else {
-                val updatedCourse = call.receive<Course>()
-                if (coursesStorage[index].ownerId == token) {
-                    println("hello: ${coursesStorage.size}")
+                val havePermission = coursesStorage[index].teachers?.any { it.userId == userId } == true
+                if (havePermission) {
                     coursesStorage[index] = updatedCourse
                     call.respond(coursesStorage[index])
-                    println("hello: ${coursesStorage.size}")
-                    println("hello: ${coursesStorage[index]}")
                 } else {
                     call.respondText(
                         text = "You don't have permission to update this course",
@@ -183,7 +312,7 @@ fun Route.coursesRouting() {
 }
 
 private fun listCourses(
-    token: String,
+    userId: String,
     coursesStorage: MutableList<Course>,
     usersStorage: MutableList<UserProfile>,
     courseStates: List<String>,
@@ -220,21 +349,32 @@ private fun listCourses(
                         it.courseState?.name == courseState
                     }
                 }.filter {
-                    it.ownerId == token
+                    it.teachers?.any { teacher ->
+                        teacher.userId == userId
+                    } == true ||
+                        it.students?.any { student ->
+                            student.userId == userId
+                        } == true
                 }
         }
 
     courses.forEach { course ->
         val owner = usersStorage.find { it.id == course.ownerId }
+        val courseId = course.id
+
         course.owner = owner
         course.students?.forEach { student ->
             val user = usersStorage.find { it.id == student.userId }
+
+            student.courseId = courseId
             user?.let {
                 student.profile = user
             }
         }
         course.teachers?.forEach { teacher ->
             val user = usersStorage.find { it.id == teacher.userId }
+
+            teacher.courseId = courseId
             user?.let {
                 teacher.profile = user
             }
@@ -243,16 +383,26 @@ private fun listCourses(
     return courses
 }
 
-private val json = Json { ignoreUnknownKeys = true }
+private fun getCoursesDto(
+    items: List<Course>,
+    currentPage: Int,
+    pageSize: Int,
+): CoursesDto {
+    val totalItems = items.size
+    val totalPages = (totalItems + pageSize - 1) / pageSize
 
-private fun fetchCourses(): List<Course> {
-    val coursesFile = FileInputStream("src/main/resources/courses-db.json")
-    val coursesData = InputStreamReader(coursesFile).readText()
-    return json.decodeFromString(coursesData)
-}
+    if (currentPage < 0 || currentPage >= totalPages) {
+        return CoursesDto(courses = emptyList())
+    }
 
-private fun fetchUsers(): List<UserProfile> {
-    val userFile = FileInputStream("src/main/resources/users-db.json")
-    val userData = InputStreamReader(userFile).readText()
-    return json.decodeFromString(userData)
+    val startIndex = currentPage * pageSize
+    val endIndex = minOf(startIndex + pageSize, totalItems)
+
+    val itemsForPage = items.subList(startIndex, endIndex)
+    val nextPage = if (currentPage < totalPages - 1) currentPage + 1 else null
+
+    return CoursesDto(
+        courses = itemsForPage,
+        nextPage = nextPage,
+    )
 }
