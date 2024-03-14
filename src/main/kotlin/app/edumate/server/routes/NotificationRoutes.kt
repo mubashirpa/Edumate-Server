@@ -11,8 +11,8 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 
 fun Route.notificationRouting(
-    service: OneSignalService,
     appId: String,
+    service: OneSignalService,
 ) {
     route("/notification") {
         post {
