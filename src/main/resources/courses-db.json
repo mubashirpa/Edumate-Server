@@ -1,118 +1,148 @@
 [
   {
-    "alternateLink": "https://classroom.google.com/c/872776904905",
-    "courseState": "ARCHIVED",
+    "alternateLink": "https://classroom.google.com/c/Im38vPK7r8VN",
+    "courseState": "ACTIVE",
     "creationTime": "2024-06-07T21:18:52Z",
-    "description": "Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.\n\nNam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.",
-    "id": "872776904905",
+    "description": "This subject covers fundamental data structures (such as arrays, linked lists, trees, graphs, etc.) and algorithms (sorting, searching, graph traversal, etc.) essential for solving computational problems efficiently",
+    "id": "Im38vPK7r8VN",
     "invitations": [
       {
         "emailAddress": "rtresvina15@jiathis.com",
         "role": "TEACHER"
       }
     ],
-    "name": "Molestie",
-    "ownerId": "01HQDYMPQ21C9CWC8HKQ74TDBW",
-    "photoUrl": "http://dummyimage.com/981x242.png/dddddd/000000",
-    "room": "At",
-    "section": "Risus",
+    "name": "Data Structures and Algorithms",
+    "ownerId": "01HQDYMPDX176WX98NEQJQAZPN",
+    "photoUrl": "https://gstatic.com/classroom/themes/Physics_thumb.jpg",
+    "room": "1",
+    "section": "Computer Science",
     "students": [
       {
+        "userId": "01HQDYMPQ83KNE2545VH0NXH5B"
+      },
+      {
+        "userId": "01HQDYMPQ62KPE2MN7C00BGQQS"
+      },
+      {
         "userId": "01HQDYMPQ4YA4RETF9J7ZW2F5Y"
+      },
+      {
+        "userId": "01HQDYMPQ21C9CWC8HKQ74TDBW"
+      },
+      {
+        "userId": "01HQDYMPQ0KYXMBWYYXRNXH4DD"
+      },
+      {
+        "userId": "01HQDYMPPYMQP8X0ZMCH3N6TNW"
+      },
+      {
+        "userId": "01HQDYMPPVF7EHP1M4MSYHN5ZE"
+      },
+      {
+        "userId": "01HQDYMPPSHKYWV3DRH5Y0GAR9"
+      },
+      {
+        "userId": "01HQDYMPPQNPSRMPVHCM6X591Y"
+      },
+      {
+        "userId": "01HQDYMPPN1VYSQG2AJQHGN3RM"
+      }
+    ],
+    "subject": "Data Structures and Algorithms",
+    "teachers": [
+      {
+        "userId": "01HQDYMPDX176WX98NEQJQAZPN"
+      },
+      {
+        "userId": "01HQDYMPDEG55JWXCKVBH19VVS"
       },
       {
         "userId": "01HQDYMPEAE4QDM4X0T5P8ZGF3"
       },
       {
-        "userId": "01HQDYMPF0J9MVG5MR579Z6T5C"
+        "userId": "01HQDYMPEBVWG7RFSV3Z1RH266"
       },
       {
-        "userId": "01HQDYMPGCGHWRWHFE8HKSDGCA"
-      },
-      {
-        "userId": "01HQDYMPQ0KYXMBWYYXRNXH4DD"
-      }
-    ],
-    "subject": "Eu",
-    "teachers": [
-      {
-        "userId": "01HQDYMPQ21C9CWC8HKQ74TDBW"
-      },
-      {
-        "userId": "01HQDYMPP6JYTMWSCMATW3F2NJ"
-      },
-      {
-        "userId": "01HQDYMPQ21C9CWC8HKQ74TDBW"
-      },
-      {
-        "userId": "01HQDYMPGCGHWRWHFE8HKSDGCA"
-      },
-      {
-        "userId": "01HQDYMPHDQTH9TK7ZZ06CK5D3"
+        "userId": "01HQDYMPE36Y165KTFT71SCWE3"
       }
     ],
     "updateTime": "2024-06-07T21:18:52Z"
   },
   {
-    "alternateLink": "https://classroom.google.com/c/900785629051",
+    "alternateLink": "https://classroom.google.com/c/ebHJCOMLxz4D",
     "courseState": "ACTIVE",
     "creationTime": "2024-03-28T05:02:43Z",
-    "description": "Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque.",
-    "id": "900785629051",
+    "description": "It deals with the design and structure of computer systems, including topics like CPU architecture, memory hierarchy, instruction set architecture (ISA), and input/output systems.",
+    "id": "ebHJCOMLxz4D",
     "invitations": [
       {
         "emailAddress": "smerryfieldw@prweb.com",
         "role": "TEACHER"
       }
     ],
-    "name": "Sollicitudin mi",
-    "ownerId": "01HQDYMPFR2AC3PY16S5672XK8",
-    "photoUrl": "http://dummyimage.com/981x242.png/5fa2dd/ffffff",
-    "room": "Non",
-    "section": "Nullam",
+    "name": "Computer Architecture and Organization",
+    "ownerId": "01HQDYMPDX176WX98NEQJQAZPN",
+    "photoUrl": "https://gstatic.com/classroom/themes/Geography_thumb.jpg",
+    "room": "1",
+    "section": "Computer Science",
     "students": [
       {
-        "userId": "01HQDYMPP6JYTMWSCMATW3F2NJ"
+        "userId": "01HQDYMPQ83KNE2545VH0NXH5B"
+      },
+      {
+        "userId": "01HQDYMPQ62KPE2MN7C00BGQQS"
+      },
+      {
+        "userId": "01HQDYMPQ4YA4RETF9J7ZW2F5Y"
       },
       {
         "userId": "01HQDYMPQ21C9CWC8HKQ74TDBW"
       },
       {
-        "userId": "01HQDYMPMJBZRXX734QPSB3ANB"
-      },
-      {
-        "userId": "01HQDYMPJZFSXEKFD9NYM996HR"
-      },
-      {
-        "userId": "01HQDYMPGF8YZBRZGP226X8YR5"
-      }
-    ],
-    "subject": "Ultrices",
-    "teachers": [
-      {
-        "userId": "01HQDYMPFR2AC3PY16S5672XK8"
-      },
-      {
-        "userId": "01HQDYMPMR6QWRCTA3WAV2E07Q"
-      },
-      {
-        "userId": "01HQDYMPHEHS46FRN87S152FFG"
+        "userId": "01HQDYMPQ0KYXMBWYYXRNXH4DD"
       },
       {
         "userId": "01HQDYMPPYMQP8X0ZMCH3N6TNW"
       },
       {
-        "userId": "01HQDYMPMR6QWRCTA3WAV2E07Q"
+        "userId": "01HQDYMPPVF7EHP1M4MSYHN5ZE"
+      },
+      {
+        "userId": "01HQDYMPPSHKYWV3DRH5Y0GAR9"
+      },
+      {
+        "userId": "01HQDYMPPQNPSRMPVHCM6X591Y"
+      },
+      {
+        "userId": "01HQDYMPPN1VYSQG2AJQHGN3RM"
+      }
+    ],
+    "subject": "Computer Architecture and Organization",
+    "teachers": [
+      {
+        "userId": "01HQDYMPDX176WX98NEQJQAZPN"
+      },
+      {
+        "userId": "01HQDYMPDEG55JWXCKVBH19VVS"
+      },
+      {
+        "userId": "01HQDYMPEAE4QDM4X0T5P8ZGF3"
+      },
+      {
+        "userId": "01HQDYMPEBVWG7RFSV3Z1RH266"
+      },
+      {
+        "userId": "01HQDYMPE36Y165KTFT71SCWE3"
       }
     ],
     "updateTime": "2024-03-28T05:02:43Z"
   },
   {
-    "alternateLink": "https://classroom.google.com/c/350228110285",
-    "courseState": "ARCHIVED",
+    "alternateLink": "https://classroom.google.com/c/AjzUPdiYm2AK",
+    "courseState": "ACTIVE",
     "creationTime": "2024-06-09T07:45:11Z",
-    "description": "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.\n\nDonec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque.\n\nDuis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.",
-    "id": "350228110285",
+    "description": "This subject covers the design, implementation, and management of operating systems, including process management, memory management, file systems, and concurrency control.",
+    "id": "AjzUPdiYm2AK",
     "invitations": [
       {
         "emailAddress": "rtwamleyp@squidoo.com",
@@ -123,42 +153,66 @@
         "role": "STUDENT"
       }
     ],
-    "name": "Nulla",
-    "ownerId": "01HQDYMPJZFSXEKFD9NYM996HR",
-    "photoUrl": "http://dummyimage.com/981x242.png/cc0000/ffffff",
-    "room": "Lobortis",
-    "section": "In",
+    "name": "Operating Systems",
+    "ownerId": "01HQDYMPDEG55JWXCKVBH19VVS",
+    "photoUrl": "https://gstatic.com/classroom/themes/SocialStudies_thumb.jpg",
+    "room": "1",
+    "section": "Computer Science",
     "students": [
       {
-        "userId": "01HQDYMPE36Y165KTFT71SCWE3"
+        "userId": "01HQDYMPQ83KNE2545VH0NXH5B"
       },
       {
-        "userId": "01HQDYMPGB9KZNXRZAHKPN21N4"
-      }
-    ],
-    "subject": "Pharetra",
-    "teachers": [
-      {
-        "userId": "01HQDYMPJZFSXEKFD9NYM996HR"
+        "userId": "01HQDYMPQ62KPE2MN7C00BGQQS"
       },
       {
-        "userId": "01HQDYMPMYPBY45TW8C41QGCWY"
+        "userId": "01HQDYMPQ4YA4RETF9J7ZW2F5Y"
+      },
+      {
+        "userId": "01HQDYMPQ21C9CWC8HKQ74TDBW"
+      },
+      {
+        "userId": "01HQDYMPQ0KYXMBWYYXRNXH4DD"
+      },
+      {
+        "userId": "01HQDYMPPYMQP8X0ZMCH3N6TNW"
       },
       {
         "userId": "01HQDYMPPVF7EHP1M4MSYHN5ZE"
       },
       {
-        "userId": "01HQDYMPMYPBY45TW8C41QGCWY"
+        "userId": "01HQDYMPPSHKYWV3DRH5Y0GAR9"
+      },
+      {
+        "userId": "01HQDYMPPQNPSRMPVHCM6X591Y"
+      },
+      {
+        "userId": "01HQDYMPPN1VYSQG2AJQHGN3RM"
+      }
+    ],
+    "subject": "Operating Systems",
+    "teachers": [
+      {
+        "userId": "01HQDYMPDEG55JWXCKVBH19VVS"
+      },
+      {
+        "userId": "01HQDYMPDX176WX98NEQJQAZPN"
+      },
+      {
+        "userId": "01HQDYMPEAE4QDM4X0T5P8ZGF3"
+      },
+      {
+        "userId": "01HQDYMPEBVWG7RFSV3Z1RH266"
       }
     ],
     "updateTime": "2024-06-09T07:45:11Z"
   },
   {
-    "alternateLink": "https://classroom.google.com/c/238813756347",
-    "courseState": "ARCHIVED",
+    "alternateLink": "https://classroom.google.com/c/TTZY33wyPqMZ",
+    "courseState": "ACTIVE",
     "creationTime": "2024-01-30T09:59:27Z",
-    "description": "Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.\n\nAenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.\n\nCurabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.",
-    "id": "238813756347",
+    "description": "It includes the study of database concepts, data models, query languages (like SQL), database design, normalization, indexing, and transaction management.",
+    "id": "TTZY33wyPqMZ",
     "invitations": [
       {
         "emailAddress": "abonsul9@unesco.org",
@@ -169,90 +223,132 @@
         "role": "TEACHER"
       }
     ],
-    "name": "Morbi",
-    "ownerId": "01HQDYMPG49DCW0DEC7ME6M3HF",
-    "photoUrl": "http://dummyimage.com/981x242.png/5fa2dd/ffffff",
-    "room": "Justo",
-    "section": "Nec",
+    "name": "Database Management Systems",
+    "ownerId": "01HQDYMPEAE4QDM4X0T5P8ZGF3",
+    "photoUrl": "https://gstatic.com/classroom/themes/Psychology_thumb.jpg",
+    "room": "1",
+    "section": "Computer Science",
     "students": [
-      {
-        "userId": "01HQDYMPJ63VNAB7HRFK3WCJ2D"
-      },
       {
         "userId": "01HQDYMPQ83KNE2545VH0NXH5B"
       },
       {
-        "userId": "01HQDYMPPEJKFNXHVC15CZDRZ7"
+        "userId": "01HQDYMPQ62KPE2MN7C00BGQQS"
       },
       {
-        "userId": "01HQDYMPPQNPSRMPVHCM6X591Y"
-      }
-    ],
-    "subject": "Semper",
-    "teachers": [
-      {
-        "userId": "01HQDYMPG49DCW0DEC7ME6M3HF"
-      },
-      {
-        "userId": "01HQDYMPGB9KZNXRZAHKPN21N4"
+        "userId": "01HQDYMPQ4YA4RETF9J7ZW2F5Y"
       },
       {
         "userId": "01HQDYMPQ21C9CWC8HKQ74TDBW"
       },
       {
-        "userId": "01HQDYMPJZFSXEKFD9NYM996HR"
+        "userId": "01HQDYMPQ0KYXMBWYYXRNXH4DD"
+      },
+      {
+        "userId": "01HQDYMPPYMQP8X0ZMCH3N6TNW"
+      },
+      {
+        "userId": "01HQDYMPPVF7EHP1M4MSYHN5ZE"
+      },
+      {
+        "userId": "01HQDYMPPSHKYWV3DRH5Y0GAR9"
       },
       {
         "userId": "01HQDYMPPQNPSRMPVHCM6X591Y"
+      },
+      {
+        "userId": "01HQDYMPPN1VYSQG2AJQHGN3RM"
+      }
+    ],
+    "subject": "Database Management Systems",
+    "teachers": [
+      {
+        "userId": "01HQDYMPEAE4QDM4X0T5P8ZGF3"
+      },
+      {
+        "userId": "01HQDYMPDX176WX98NEQJQAZPN"
+      },
+      {
+        "userId": "01HQDYMPDEG55JWXCKVBH19VVS"
+      },
+      {
+        "userId": "01HQDYMPEBVWG7RFSV3Z1RH266"
+      },
+      {
+        "userId": "01HQDYMPE36Y165KTFT71SCWE3"
       }
     ],
     "updateTime": "2024-01-30T09:59:27Z"
   },
   {
-    "alternateLink": "https://classroom.google.com/c/26515479406",
-    "courseState": "ARCHIVED",
+    "alternateLink": "https://classroom.google.com/c/l4agmv5xK2uJ",
+    "courseState": "ACTIVE",
     "creationTime": "2024-04-21T12:55:07Z",
-    "description": "Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.",
-    "id": "26515479406",
+    "description": "This subject focuses on the principles, methodologies, and practices involved in the development, testing, and maintenance of software systems. Topics may include requirements engineering, software design, software testing, and software project management.",
+    "id": "l4agmv5xK2uJ",
     "invitations": [
       {
         "emailAddress": "stompsett1@state.gov",
         "role": "TEACHER"
       }
     ],
-    "name": "Pede",
-    "ownerId": "01HQDYMPEAE4QDM4X0T5P8ZGF3",
-    "photoUrl": "http://dummyimage.com/981x242.png/ff4444/ffffff",
-    "room": "At",
-    "section": "Commodo",
+    "name": "Software Engineering",
+    "ownerId": "01HQDYMPEBVWG7RFSV3Z1RH266",
+    "photoUrl": "https://gstatic.com/classroom/themes/Writing_thumb.jpg",
+    "room": "1",
+    "section": "Computer Science",
     "students": [
       {
+        "userId": "01HQDYMPQ83KNE2545VH0NXH5B"
+      },
+      {
         "userId": "01HQDYMPQ62KPE2MN7C00BGQQS"
+      },
+      {
+        "userId": "01HQDYMPQ4YA4RETF9J7ZW2F5Y"
+      },
+      {
+        "userId": "01HQDYMPQ21C9CWC8HKQ74TDBW"
+      },
+      {
+        "userId": "01HQDYMPQ0KYXMBWYYXRNXH4DD"
+      },
+      {
+        "userId": "01HQDYMPPYMQP8X0ZMCH3N6TNW"
+      },
+      {
+        "userId": "01HQDYMPPVF7EHP1M4MSYHN5ZE"
+      },
+      {
+        "userId": "01HQDYMPPSHKYWV3DRH5Y0GAR9"
+      },
+      {
+        "userId": "01HQDYMPPQNPSRMPVHCM6X591Y"
       },
       {
         "userId": "01HQDYMPPN1VYSQG2AJQHGN3RM"
       }
     ],
-    "subject": "Vitae",
+    "subject": "Software Engineering",
     "teachers": [
       {
-        "userId": "01HQDYMPEAE4QDM4X0T5P8ZGF3"
+        "userId": "01HQDYMPEBVWG7RFSV3Z1RH266"
       },
       {
-        "userId": "01HQDYMPFR2AC3PY16S5672XK8"
+        "userId": "01HQDYMPDX176WX98NEQJQAZPN"
       },
       {
-        "userId": "01HQDYMPPSHKYWV3DRH5Y0GAR9"
+        "userId": "01HQDYMPDEG55JWXCKVBH19VVS"
       }
     ],
     "updateTime": "2024-04-21T12:55:07Z"
   },
   {
-    "alternateLink": "https://classroom.google.com/c/19978769521",
+    "alternateLink": "https://classroom.google.com/c/MzEEMTn00bV6",
     "courseState": "ACTIVE",
     "creationTime": "2024-04-06T08:11:30Z",
-    "description": "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.\n\nCurabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.",
-    "id": "19978769521",
+    "description": "This subject explores techniques and algorithms for creating intelligent systems that can perceive, reason, learn, and act. Topics may include machine learning, neural networks, natural language processing, and robotics.",
+    "id": "MzEEMTn00bV6",
     "invitations": [
       {
         "emailAddress": "rcopcutt5@bluehost.com",
@@ -263,245 +359,52 @@
         "role": "TEACHER"
       }
     ],
-    "name": "Libero rutrum",
-    "ownerId": "01HQDYMPF2C1PMMNCFBXVEGGYK",
-    "photoUrl": "http://dummyimage.com/981x242.png/cc0000/ffffff",
-    "room": "Pede",
-    "section": "Et",
+    "name": "Artificial Intelligence",
+    "ownerId": "01HQDYMPE36Y165KTFT71SCWE3",
+    "photoUrl": "https://gstatic.com/classroom/themes/img_graduation_thumb.jpg",
+    "room": "1",
+    "section": "Computer Science",
     "students": [
-      {
-        "userId": "01HQDYMPQ62KPE2MN7C00BGQQS"
-      },
-      {
-        "userId": "01HQDYMPK6NK6R0R2JMHSMTHJS"
-      },
-      {
-        "userId": "01HQDYMPG49DCW0DEC7ME6M3HF"
-      }
-    ],
-    "subject": "Vestibulum",
-    "teachers": [
-      {
-        "userId": "01HQDYMPF2C1PMMNCFBXVEGGYK"
-      },
-      {
-        "userId": "01HQDYMPPCQPWT4GBNP2HEB7M5"
-      }
-    ],
-    "updateTime": "2024-04-06T08:11:30Z"
-  },
-  {
-    "alternateLink": "https://classroom.google.com/c/675694348589",
-    "courseState": "ACTIVE",
-    "creationTime": "2024-04-14T16:29:37Z",
-    "description": "Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.\n\nMaecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.\n\nNullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.",
-    "id": "675694348589",
-    "invitations": [
-      {
-        "emailAddress": "ebrickett16@zimbio.com",
-        "role": "STUDENT"
-      },
-      {
-        "emailAddress": "wkettle14@shop-pro.jp",
-        "role": "TEACHER"
-      }
-    ],
-    "name": "Hac",
-    "ownerId": "01HQDYMPEAE4QDM4X0T5P8ZGF3",
-    "photoUrl": "http://dummyimage.com/981x242.png/ff4444/ffffff",
-    "room": "Et",
-    "section": "Faucibus",
-    "students": [
-      {
-        "userId": "01HQDYMPP85155S2J5HCX880E1"
-      },
-      {
-        "userId": "01HQDYMPMR6QWRCTA3WAV2E07Q"
-      },
-      {
-        "userId": "01HQDYMPP85155S2J5HCX880E1"
-      },
       {
         "userId": "01HQDYMPQ83KNE2545VH0NXH5B"
       },
       {
-        "userId": "01HQDYMPN7QP4S3J925ZXQF2V9"
+        "userId": "01HQDYMPQ62KPE2MN7C00BGQQS"
       },
-      {
-        "userId": "01HQDYMPDEG55JWXCKVBH19VVS"
-      },
-      {
-        "userId": "01HQDYMPGCGHWRWHFE8HKSDGCA"
-      }
-    ],
-    "subject": "Et",
-    "teachers": [
-      {
-        "userId": "01HQDYMPEAE4QDM4X0T5P8ZGF3"
-      }
-    ],
-    "updateTime": "2024-04-14T16:29:37Z"
-  },
-  {
-    "alternateLink": "https://classroom.google.com/c/379552539282",
-    "courseState": "ARCHIVED",
-    "creationTime": "2024-04-30T15:50:42Z",
-    "description": "In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.",
-    "id": "379552539282",
-    "invitations": [
-      {
-        "emailAddress": "slightbodyi@behance.net",
-        "role": "TEACHER"
-      },
-      {
-        "emailAddress": "igravatt11@wisc.edu",
-        "role": "TEACHER"
-      }
-    ],
-    "name": "Blandit",
-    "ownerId": "01HQDYMPQ4YA4RETF9J7ZW2F5Y",
-    "photoUrl": "http://dummyimage.com/981x242.png/cc0000/ffffff",
-    "room": "Vel",
-    "section": "Nec",
-    "students": [
-      {
-        "userId": "01HQDYMPEBVWG7RFSV3Z1RH266"
-      },
-      {
-        "userId": "01HQDYMPKQ6G9AKXW9AXQTWSHC"
-      },
-      {
-        "userId": "01HQDYMPJ63VNAB7HRFK3WCJ2D"
-      },
-      {
-        "userId": "01HQDYMPMYPBY45TW8C41QGCWY"
-      },
-      {
-        "userId": "01HQDYMPPN1VYSQG2AJQHGN3RM"
-      }
-    ],
-    "subject": "Phasellus",
-    "teachers": [
       {
         "userId": "01HQDYMPQ4YA4RETF9J7ZW2F5Y"
-      }
-    ],
-    "updateTime": "2024-04-30T15:50:42Z"
-  },
-  {
-    "alternateLink": "https://classroom.google.com/c/712962206266",
-    "courseState": "ACTIVE",
-    "creationTime": "2024-06-01T01:29:19Z",
-    "description": "Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.\n\nCras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.\n\nProin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.",
-    "id": "712962206266",
-    "invitations": [
-      {
-        "emailAddress": "cdigmanm@naver.com",
-        "role": "TEACHER"
       },
       {
-        "emailAddress": "afollows3@go.com",
-        "role": "STUDENT"
-      }
-    ],
-    "name": "Faucibus orci",
-    "ownerId": "01HQDYMPH1RQK2HA7T078QXAR7",
-    "photoUrl": "http://dummyimage.com/981x242.png/dddddd/000000",
-    "room": "Ipsum",
-    "section": "Mauris",
-    "students": [
-      {
-        "userId": "01HQDYMPH1RQK2HA7T078QXAR7"
+        "userId": "01HQDYMPQ21C9CWC8HKQ74TDBW"
       },
       {
-        "userId": "01HQDYMPG49DCW0DEC7ME6M3HF"
+        "userId": "01HQDYMPQ0KYXMBWYYXRNXH4DD"
       },
       {
-        "userId": "01HQDYMPJCYQB2A4R9DDE2JB61"
-      },
-      {
-        "userId": "01HQDYMPMJBZRXX734QPSB3ANB"
-      },
-      {
-        "userId": "01HQDYMPJZFSXEKFD9NYM996HR"
+        "userId": "01HQDYMPPYMQP8X0ZMCH3N6TNW"
       },
       {
         "userId": "01HQDYMPPVF7EHP1M4MSYHN5ZE"
       },
       {
-        "userId": "01HQDYMPGCGHWRWHFE8HKSDGCA"
+        "userId": "01HQDYMPPSHKYWV3DRH5Y0GAR9"
+      },
+      {
+        "userId": "01HQDYMPPQNPSRMPVHCM6X591Y"
+      },
+      {
+        "userId": "01HQDYMPPN1VYSQG2AJQHGN3RM"
       }
     ],
-    "subject": "Ultrices",
+    "subject": "Artificial Intelligence",
     "teachers": [
       {
-        "userId": "01HQDYMPH1RQK2HA7T078QXAR7"
+        "userId": "01HQDYMPE36Y165KTFT71SCWE3"
       },
       {
-        "userId": "01HQDYMPJCYQB2A4R9DDE2JB61"
-      },
-      {
-        "userId": "01HQDYMPDEG55JWXCKVBH19VVS"
-      },
-      {
-        "userId": "01HQDYMPGB9KZNXRZAHKPN21N4"
-      },
-      {
-        "userId": "01HQDYMPQ0KYXMBWYYXRNXH4DD"
+        "userId": "01HQDYMPDX176WX98NEQJQAZPN"
       }
     ],
-    "updateTime": "2024-06-01T01:29:19Z"
-  },
-  {
-    "alternateLink": "https://classroom.google.com/c/577984262833",
-    "courseState": "ACTIVE",
-    "creationTime": "2024-05-14T10:34:22Z",
-    "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.",
-    "id": "577984262833",
-    "invitations": [
-      {
-        "emailAddress": "acocktonu@geocities.com",
-        "role": "TEACHER"
-      },
-      {
-        "emailAddress": "nhubbart1c@walmart.com",
-        "role": "TEACHER"
-      }
-    ],
-    "name": "Semper porta",
-    "ownerId": "01HQDYMPFRX532PPPMNY5SHJ73",
-    "photoUrl": "http://dummyimage.com/981x242.png/5fa2dd/ffffff",
-    "room": "Vel",
-    "section": "Dolor",
-    "students": [
-      {
-        "userId": "01HQDYMPJZFSXEKFD9NYM996HR"
-      },
-      {
-        "userId": "01HQDYMPF0J9MVG5MR579Z6T5C"
-      },
-      {
-        "userId": "01HQDYMPHDQTH9TK7ZZ06CK5D3"
-      },
-      {
-        "userId": "01HQDYMPJCYQB2A4R9DDE2JB61"
-      },
-      {
-        "userId": "01HQDYMPQ0KYXMBWYYXRNXH4DD"
-      },
-      {
-        "userId": "01HQDYMPG4P83GG4K026K7DBRQ"
-      }
-    ],
-    "subject": "Mauris",
-    "teachers": [
-      {
-        "userId": "01HQDYMPFRX532PPPMNY5SHJ73"
-      },
-      {
-        "userId": "01HQDYMPPEJKFNXHVC15CZDRZ7"
-      }
-    ],
-    "updateTime": "2024-05-14T10:34:22Z"
+    "updateTime": "2024-04-06T08:11:30Z"
   }
 ]
