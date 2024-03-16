@@ -1,6 +1,7 @@
 package app.edumate.server.routes
 
 import app.edumate.server.core.utils.FirebaseUtils
+import app.edumate.server.core.utils.ListUtils
 import app.edumate.server.models.classroom.courses.Course
 import app.edumate.server.models.classroom.students.Student
 import app.edumate.server.models.classroom.students.StudentsDto
@@ -271,7 +272,7 @@ fun Route.studentsRouting(classroom: Classroom) {
                 course.teachers?.any { it.userId == userId } == true || course.students?.any { it.userId == userId } == true
 
             if (havePermission) {
-                val students = listStudents(usersStorage, course)
+                val students = listStudents(usersStorage, course, userId)
                 call.respond(getStudentsDto(students, page, pageSize))
             } else {
                 call.respondText(
@@ -286,6 +287,7 @@ fun Route.studentsRouting(classroom: Classroom) {
 private fun listStudents(
     usersStorage: MutableList<UserProfile>,
     course: Course,
+    userId: String,
 ): List<Student> {
     val students: MutableList<Student> = mutableListOf()
     course.students?.forEach { student ->
@@ -298,6 +300,7 @@ private fun listStudents(
             ),
         )
     }
+    ListUtils.moveToIndex(students, 0) { it.userId == userId }
     return students
 }
 
