@@ -19,5 +19,6 @@ fun Application.configureRouting(
         courseWorkRouting(classroom, daoFacade, firestore)
         notificationRouting(oneSignalAppId, oneSignalService)
         studentsRouting(classroom)
+        teachersRouting(classroom)
     }
 }
