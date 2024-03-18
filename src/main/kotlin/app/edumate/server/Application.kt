@@ -1,7 +1,5 @@
 package app.edumate.server
 
-import app.edumate.server.dao.DAOFacadeImpl
-import app.edumate.server.dao.DatabaseSingleton
 import app.edumate.server.data.remote.OneSignalServiceImpl
 import app.edumate.server.plugins.*
 import com.google.firebase.cloud.FirestoreClient
@@ -16,7 +14,6 @@ fun main(args: Array<String>) {
 }
 
 fun Application.module() {
-    DatabaseSingleton.init()
     configureCors()
     configureSerialization()
     configureFirebase()
@@ -32,11 +29,9 @@ fun Application.module() {
     val oneSignalService = OneSignalServiceImpl(client, oneSignalApiKey)
     val firebaseFirestore = FirestoreClient.getFirestore()
     val classroom = Classroom()
-    val daoFacade = DAOFacadeImpl()
 
     configureRouting(
         classroom = classroom,
-        daoFacade = daoFacade,
         firestore = firebaseFirestore,
         oneSignalAppId = oneSignalAppId,
         oneSignalService = oneSignalService,
