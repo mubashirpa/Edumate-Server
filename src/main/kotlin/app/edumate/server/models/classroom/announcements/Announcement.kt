@@ -15,6 +15,7 @@ data class Announcement(
     val id: String? = null,
     val individualStudentsOptions: IndividualStudentsOptions? = null,
     val materials: List<Material>? = null,
+    val scheduledTime: String? = null,
     val state: AnnouncementState? = null,
     val text: String? = null,
     val updateTime: String? = null,
