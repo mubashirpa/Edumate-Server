@@ -7,7 +7,7 @@ object ListUtils {
         predicate: (T) -> Boolean,
     ) {
         val itemIndex = list.indexOfFirst(predicate)
-        if (itemIndex != -1 && itemIndex != index) {
+        if (itemIndex != -1 && itemIndex != index && index <= list.size) {
             val item = list.removeAt(itemIndex)
             list.add(index, item)
         }
