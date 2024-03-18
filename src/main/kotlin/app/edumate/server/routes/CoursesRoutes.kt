@@ -56,25 +56,34 @@ fun Route.coursesRouting(classroom: Classroom) {
                 }
             val course = call.receive<Course>()
 
+            val name =
+                course.name ?: return@post call.respondText(
+                    text = "Course name must be specified",
+                    status = HttpStatusCode.BadRequest,
+                )
             val id = DatabaseUtils.generateId(12)
+            val creationTime = DateTimeUtils.getCurrentDateTime("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+            val enrollmentCode = null // TODO
+            val courseState = course.courseState ?: CourseState.PROVISIONED
+            val alternateLink = "https://classroom.google.com/c/$id"
             val teachers = mutableListOf(Teacher(userId = userId))
-            val time = DateTimeUtils.getCurrentDateTime("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+
             val createdCourse =
                 Course(
-                    alternateLink = "https://classroom.google.com/c/$id",
-                    courseState = course.courseState ?: CourseState.PROVISIONED,
-                    creationTime = time,
-                    enrollmentCode = null, // TODO
                     id = id,
-                    name = course.name,
+                    name = name,
                     ownerId = userId,
+                    creationTime = creationTime,
+                    updateTime = creationTime,
+                    enrollmentCode = enrollmentCode,
+                    courseState = courseState,
+                    alternateLink = alternateLink, // [END]
                     photoUrl = classroom.images.random(),
                     room = course.room,
                     section = course.section,
                     students = mutableListOf(),
                     subject = course.subject,
                     teachers = teachers,
-                    updateTime = time,
                 )
 
             coursesStorage.add(createdCourse)
@@ -118,19 +127,25 @@ fun Route.coursesRouting(classroom: Classroom) {
                 }
             val id =
                 call.parameters["id"] ?: return@delete call.respondText(
-                    text = "You must specify an id",
+                    text = "You must specify a course id",
                     status = HttpStatusCode.BadRequest,
                 )
 
             if (coursesStorage.removeIf { it.id == id && it.ownerId == userId }) {
-                call.respondText(text = "The course with id $id was deleted", status = HttpStatusCode.Accepted)
+                call.respondText(
+                    text = "The course with id $id was deleted",
+                    status = HttpStatusCode.Accepted,
+                )
             } else if (coursesStorage.any { it.id == id }) {
                 call.respondText(
                     text = "You don't have permission to delete the course with id $id",
                     status = HttpStatusCode.Forbidden,
                 )
             } else {
-                call.respondText(text = "No course with id $id", status = HttpStatusCode.NotFound)
+                call.respondText(
+                    text = "No course with id $id",
+                    status = HttpStatusCode.NotFound,
+                )
             }
         }
         get("/{id}") {
@@ -168,7 +183,7 @@ fun Route.coursesRouting(classroom: Classroom) {
                 }
             val id =
                 call.parameters["id"] ?: return@get call.respondText(
-                    text = "You must specify an id",
+                    text = "You must specify a course id",
                     status = HttpStatusCode.BadRequest,
                 )
 
@@ -178,7 +193,7 @@ fun Route.coursesRouting(classroom: Classroom) {
                     status = HttpStatusCode.NotFound,
                 )
             val havePermission =
-                course.students?.any { it.userId == userId } == true || course.teachers?.any { it.userId == userId } == true
+                course.teachers?.any { it.userId == userId } == true || course.students?.any { it.userId == userId } == true
 
             if (havePermission) {
                 call.respond(course)
@@ -286,19 +301,24 @@ fun Route.coursesRouting(classroom: Classroom) {
                 }
             val id =
                 call.parameters["id"] ?: return@put call.respondText(
-                    text = "You must specify an id",
+                    text = "You must specify a course id",
                     status = HttpStatusCode.BadRequest,
                 )
-            val updatedCourse = call.receive<Course>()
+            val course = call.receive<Course>()
 
             val index = coursesStorage.indexOfFirst { it.id == id }
 
             if (index == -1) {
-                call.respondText(text = "No course with id $id", status = HttpStatusCode.NotFound)
+                call.respondText(
+                    text = "No course with id $id",
+                    status = HttpStatusCode.NotFound,
+                )
             } else {
                 val havePermission = coursesStorage[index].teachers?.any { it.userId == userId } == true
+
                 if (havePermission) {
-                    coursesStorage[index] = updatedCourse
+                    coursesStorage[index] = course
+
                     call.respond(coursesStorage[index])
                 } else {
                     call.respondText(

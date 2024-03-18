@@ -53,7 +53,7 @@ fun Route.studentsRouting(classroom: Classroom) {
             }
             val courseId =
                 call.parameters["courseId"] ?: return@post call.respondText(
-                    text = "You must specify a courseId",
+                    text = "You must specify a course id",
                     status = HttpStatusCode.BadRequest,
                 )
             // TODO(" If the requester is a student, the enrollmentCode is required.")
@@ -76,12 +76,12 @@ fun Route.studentsRouting(classroom: Classroom) {
                     course.students = mutableListOf()
                 }
                 course.students?.add(Student(userId = student.userId))
-            }
 
-            call.respond(
-                status = HttpStatusCode.Created,
-                message = student,
-            )
+                call.respond(
+                    status = HttpStatusCode.Created,
+                    message = student,
+                )
+            }
         }
         delete("/{userId}") {
             val token =
@@ -118,12 +118,12 @@ fun Route.studentsRouting(classroom: Classroom) {
                 }
             val courseId =
                 call.parameters["courseId"] ?: return@delete call.respondText(
-                    text = "You must specify a courseId",
+                    text = "You must specify a course id",
                     status = HttpStatusCode.BadRequest,
                 )
             val deleteUserId =
                 call.parameters["userId"] ?: return@delete call.respondText(
-                    text = "You must specify a userId",
+                    text = "You must specify a user id",
                     status = HttpStatusCode.BadRequest,
                 )
 
@@ -187,12 +187,12 @@ fun Route.studentsRouting(classroom: Classroom) {
                 }
             val courseId =
                 call.parameters["courseId"] ?: return@get call.respondText(
-                    text = "You must specify a courseId",
+                    text = "You must specify a course id",
                     status = HttpStatusCode.BadRequest,
                 )
             val getUserId =
                 call.parameters["userId"] ?: return@get call.respondText(
-                    text = "You must specify a userId",
+                    text = "You must specify a user id",
                     status = HttpStatusCode.BadRequest,
                 )
 
@@ -257,7 +257,7 @@ fun Route.studentsRouting(classroom: Classroom) {
                 }
             val courseId =
                 call.parameters["courseId"] ?: return@get call.respondText(
-                    text = "You must specify a courseId",
+                    text = "You must specify a course id",
                     status = HttpStatusCode.BadRequest,
                 )
             val pageSize = call.parameters["pageSize"]?.toIntOrNull() ?: 20
@@ -273,6 +273,7 @@ fun Route.studentsRouting(classroom: Classroom) {
 
             if (havePermission) {
                 val students = listStudents(usersStorage, course, userId)
+
                 call.respond(getStudentsDto(students, page, pageSize))
             } else {
                 call.respondText(
