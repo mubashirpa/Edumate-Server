@@ -22,6 +22,7 @@ fun Route.announcementRouting(
     firestore: Firestore,
 ) {
     val coursesStorage = classroom.coursesStorage
+    val usersStorage = classroom.usersStorage
 
     route("/v1/courses/{courseId}/announcements") {
         post {
@@ -309,9 +310,13 @@ fun Route.announcementRouting(
                         .collection("announcements")
                         .whereIn("state", announcementStates)
                         .get().get()
-                val announcement = document.toObjects(Announcement::class.java).sort(orderBy)
+                val announcements = document.toObjects(Announcement::class.java).sort(orderBy)
+                announcements.forEach { announcement ->
+                    val creator = usersStorage.find { it.id == announcement.creatorUserId }
+                    announcement.creator = creator
+                }
 
-                call.respond(getAnnouncementsDto(announcement, page, pageSize))
+                call.respond(getAnnouncementsDto(announcements, page, pageSize))
             } else {
                 call.respondText(
                     text = "You don't have permission",
