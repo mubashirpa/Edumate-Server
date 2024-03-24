@@ -403,59 +403,61 @@ fun Route.courseWorkRouting(
                     text = "No course with id $courseId",
                     status = HttpStatusCode.NotFound,
                 )
-            val havePermission =
-                course.teachers?.any { it.userId == userId } == true
+            val document = courseWorkDatabase(firestore, courseId, id)
+            val havePermission = course.teachers?.any { it.userId == userId } == true
 
-            if (havePermission) {
-                val document = courseWorkDatabase(firestore, courseId, id)
-                val updates: MutableMap<String, Any?> = HashMap()
-                if (updateMask.contains("title")) {
-                    updates["title"] = courseWork.title
-                }
-                if (updateMask.contains("description")) {
-                    updates["description"] = courseWork.description
-                }
-                if (updateMask.contains("state")) {
-                    updates["state"] = courseWork.state
-                }
-                if (updateMask.contains("dueDate")) {
-                    updates["dueDate"] = courseWork.dueDate
-                }
-                if (updateMask.contains("dueTime")) {
-                    updates["dueTime"] = courseWork.dueTime
-                }
-                if (updateMask.contains("maxPoints")) {
-                    updates["maxPoints"] = courseWork.maxPoints
-                }
-                if (updateMask.contains("scheduledTime")) {
-                    updates["scheduledTime"] = courseWork.scheduledTime
-                }
-                if (updateMask.contains("submissionModificationMode")) {
-                    updates["submissionModificationMode"] = courseWork.submissionModificationMode
-                }
-                if (updateMask.contains("topicId")) {
-                    updates["topicId"] = courseWork.topicId
-                }
-                updates["materials"] = courseWork.materials
-                updates["multipleChoiceQuestion"] = courseWork.multipleChoiceQuestion
-                updates["updateTime"] = DateTimeUtils.getCurrentDateTime("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-
-                if (document.get().get().exists()) {
-                    document.update(updates).get()
-                    val updatedCourseWork = document.get().get().toObject(CourseWork::class.java)
-
-                    if (updatedCourseWork != null) {
-                        call.respond(updatedCourseWork)
-                    } else {
-                        call.respondText(text = "No course work with id $id", status = HttpStatusCode.NotFound)
+            if (document.get().get().exists()) {
+                if (havePermission) {
+                    val updates: MutableMap<String, Any?> = HashMap()
+                    if (updateMask.contains("title")) {
+                        updates["title"] = courseWork.title
                     }
+                    if (updateMask.contains("description")) {
+                        updates["description"] = courseWork.description
+                    }
+                    if (updateMask.contains("state")) {
+                        updates["state"] = courseWork.state
+                    }
+                    if (updateMask.contains("dueDate")) {
+                        updates["dueDate"] = courseWork.dueDate
+                    }
+                    if (updateMask.contains("dueTime")) {
+                        updates["dueTime"] = courseWork.dueTime
+                    }
+                    if (updateMask.contains("maxPoints")) {
+                        updates["maxPoints"] = courseWork.maxPoints
+                    }
+                    if (updateMask.contains("scheduledTime")) {
+                        updates["scheduledTime"] = courseWork.scheduledTime
+                    }
+                    if (updateMask.contains("submissionModificationMode")) {
+                        updates["submissionModificationMode"] = courseWork.submissionModificationMode
+                    }
+                    if (updateMask.contains("topicId")) {
+                        updates["topicId"] = courseWork.topicId
+                    }
+                    updates["materials"] = courseWork.materials
+                    updates["multipleChoiceQuestion"] = courseWork.multipleChoiceQuestion
+                    updates["updateTime"] = DateTimeUtils.getCurrentDateTime("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+
+                    document.update(updates).get()
+                    val updatedCourseWork =
+                        document.get().get().toObject(CourseWork::class.java) ?: return@patch call.respondText(
+                            text = "No course work with id $id",
+                            status = HttpStatusCode.NotFound,
+                        )
+
+                    call.respond(updatedCourseWork)
                 } else {
-                    call.respondText(text = "No course work with id $id", status = HttpStatusCode.NotFound)
+                    call.respondText(
+                        text = "You don't have permission",
+                        status = HttpStatusCode.Forbidden,
+                    )
                 }
             } else {
                 call.respondText(
-                    text = "You don't have permission",
-                    status = HttpStatusCode.Forbidden,
+                    text = "No course work with id $id",
+                    status = HttpStatusCode.NotFound,
                 )
             }
         }
