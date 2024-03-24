@@ -13,7 +13,7 @@ fun Application.configureRouting(
     oneSignalService: OneSignalService,
 ) {
     routing {
-        announcementRouting(classroom, firestore)
+        announcementsRouting(classroom, firestore)
         coursesRouting(classroom)
         courseWorkRouting(classroom, firestore)
         notificationRouting(oneSignalAppId, oneSignalService)
