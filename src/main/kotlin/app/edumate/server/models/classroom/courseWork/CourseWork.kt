@@ -1,6 +1,7 @@
 package app.edumate.server.models.classroom.courseWork
 
 import app.edumate.server.models.classroom.AssigneeMode
+import app.edumate.server.models.classroom.GradeCategory
 import app.edumate.server.models.classroom.IndividualStudentsOptions
 import app.edumate.server.models.classroom.Material
 import kotlinx.serialization.Serializable
@@ -16,7 +17,7 @@ data class CourseWork(
     val creatorUserId: String? = null,
     val description: String? = null,
     val dueDate: DueDate? = null,
-    val dueTime: DueTime? = null,
+    val dueTime: TimeOfDay? = null,
     val gradeCategory: GradeCategory? = null,
     val id: String? = null,
     val individualStudentsOptions: IndividualStudentsOptions? = null,

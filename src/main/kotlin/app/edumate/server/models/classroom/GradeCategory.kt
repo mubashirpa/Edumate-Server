@@ -1,4 +1,4 @@
-package app.edumate.server.models.classroom.courseWork
+package app.edumate.server.models.classroom
 
 import kotlinx.serialization.Serializable
 

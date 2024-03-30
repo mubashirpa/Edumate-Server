@@ -12,7 +12,7 @@ data class Announcement(
     val assigneeMode: AssigneeMode? = null,
     val courseId: String? = null,
     val creationTime: String? = null,
-    var creator: UserProfile? = null,
+    var creator: UserProfile? = null, // Extra
     val creatorUserId: String? = null,
     val id: String? = null,
     val individualStudentsOptions: IndividualStudentsOptions? = null,

@@ -11,16 +11,18 @@ data class Course(
     val courseState: CourseState? = null,
     val creationTime: String? = null,
     val description: String? = null,
+    val descriptionHeading: String? = null,
     val enrollmentCode: String? = null,
+    val gradebookSettings: GradebookSettings? = null,
     val id: String? = null,
     val name: String? = null,
-    var owner: UserProfile? = null,
     val ownerId: String? = null,
-    val photoUrl: String? = null,
+    val photoUrl: String? = null, // Extra
     val room: String? = null,
     val section: String? = null,
-    var students: MutableList<Student>? = null,
     val subject: String? = null,
-    var teachers: MutableList<Teacher>? = null,
     val updateTime: String? = null,
+    var owner: UserProfile? = null, // Extra
+    var students: MutableList<Student>? = null, // Extra
+    var teachers: MutableList<Teacher>? = null, // Extra
 )
