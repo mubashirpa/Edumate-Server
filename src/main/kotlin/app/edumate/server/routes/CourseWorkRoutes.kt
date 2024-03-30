@@ -130,6 +130,7 @@ fun Route.courseWorkRouting(
                     )
 
                 courseWorkDatabase(firestore, courseId, id).set(newCourseWork).get()
+
                 call.respond(
                     status = HttpStatusCode.Created,
                     message = newCourseWork,
