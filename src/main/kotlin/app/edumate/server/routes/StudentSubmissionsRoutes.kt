@@ -22,6 +22,7 @@ fun Route.studentSubmissionsRouting(
     firestore: Firestore,
 ) {
     val coursesStorage = classroom.coursesStorage
+    val usersStorage = classroom.usersStorage
 
     route("/v1/courses/{courseId}/courseWork/{courseWorkId}/studentSubmissions") {
         get("/{id}") {
@@ -102,6 +103,8 @@ fun Route.studentSubmissionsRouting(
                         text = "No student submission with id $id",
                         status = HttpStatusCode.NotFound,
                     )
+                val user = usersStorage.find { it.id == studentSubmission.userId }
+                studentSubmission.user = user
 
                 call.respond(studentSubmission)
             } else {
@@ -185,6 +188,10 @@ fun Route.studentSubmissionsRouting(
                         states = states,
                         userId = uid,
                     )
+                studentSubmissions.forEach { studentSubmission ->
+                    val user = usersStorage.find { it.id == studentSubmission.userId }
+                    studentSubmission.user = user
+                }
 
                 call.respond(getStudentSubmissionsDto(studentSubmissions, page, pageSize))
             } else {
@@ -377,6 +384,7 @@ fun Route.studentSubmissionsRouting(
                 }
                 if (updateMask.contains("shortAnswerSubmission.answer")) {
                     updates["shortAnswerSubmission"] = studentSubmission.shortAnswerSubmission
+                    // updates["state"] = SubmissionState.STUDENT_EDITED_AFTER_TURN_IN
                 }
                 updates["updateTime"] = DateTimeUtils.getCurrentDateTime("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
 
@@ -630,7 +638,6 @@ fun Route.studentSubmissionsRouting(
                 )
             val dueDate = courseWork.dueDate
             val dueTime = courseWork.dueTime
-            // TODO: Add late value on turn in
             val late =
                 if (dueDate == null || dueTime == null) {
                     null

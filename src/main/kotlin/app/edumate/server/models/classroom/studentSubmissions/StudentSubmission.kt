@@ -1,6 +1,7 @@
 package app.edumate.server.models.classroom.studentSubmissions
 
 import app.edumate.server.models.classroom.courseWork.CourseWorkType
+import app.edumate.server.models.userProfiles.UserProfile
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -20,5 +21,6 @@ data class StudentSubmission(
     val shortAnswerSubmission: ShortAnswerSubmission? = null, // Union field details can be only one
     val state: SubmissionState? = null,
     val updateTime: String? = null,
+    var user: UserProfile? = null, // Extra
     val userId: String? = null,
 )
