@@ -239,6 +239,8 @@ fun Route.announcementsRouting(
                     text = "No announcement with id $id",
                     status = HttpStatusCode.NotFound,
                 )
+            val creator = usersStorage.find { it.id == announcement.creatorUserId }
+            announcement.creator = creator
             val havePermission =
                 course.teachers?.any { it.userId == userId } == true || course.students?.any { it.userId == userId } == true
 
