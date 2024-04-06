@@ -3,6 +3,7 @@ package app.edumate.server
 import app.edumate.server.data.remote.OneSignalServiceImpl
 import app.edumate.server.plugins.*
 import com.google.firebase.cloud.FirestoreClient
+import com.google.firebase.database.FirebaseDatabase
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.contentnegotiation.*
@@ -28,10 +29,12 @@ fun Application.module() {
     val oneSignalAppId = environment.config.propertyOrNull("onesignal.app_id")?.getString().orEmpty()
     val oneSignalService = OneSignalServiceImpl(client, oneSignalApiKey)
     val firebaseFirestore = FirestoreClient.getFirestore()
+    val firebaseDatabase = FirebaseDatabase.getInstance()
     val classroom = Classroom()
 
     configureRouting(
         classroom = classroom,
+        database = firebaseDatabase,
         firestore = firebaseFirestore,
         oneSignalAppId = oneSignalAppId,
         oneSignalService = oneSignalService,
