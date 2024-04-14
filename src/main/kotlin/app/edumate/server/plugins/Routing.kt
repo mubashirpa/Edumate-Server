@@ -9,7 +9,7 @@ import io.ktor.server.routing.*
 
 fun Application.configureRouting(
     classroom: Classroom,
-    database: FirebaseDatabase,
+    firebaseDatabase: FirebaseDatabase,
     firestore: Firestore,
     oneSignalAppId: String,
     oneSignalService: OneSignalService,
@@ -18,8 +18,7 @@ fun Application.configureRouting(
         announcementsRouting(classroom, firestore)
         courseWorkRouting(classroom, firestore)
         coursesRouting(classroom)
-        meetRouting(classroom, database)
-        notificationRouting(oneSignalAppId, oneSignalService)
+        meetRouting(classroom, firebaseDatabase, oneSignalAppId, oneSignalService)
         studentSubmissionsRouting(classroom, firestore)
         studentsRouting(classroom)
         teachersRouting(classroom)

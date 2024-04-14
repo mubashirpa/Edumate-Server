@@ -34,7 +34,7 @@ fun Application.module() {
 
     configureRouting(
         classroom = classroom,
-        database = firebaseDatabase,
+        firebaseDatabase = firebaseDatabase,
         firestore = firebaseFirestore,
         oneSignalAppId = oneSignalAppId,
         oneSignalService = oneSignalService,

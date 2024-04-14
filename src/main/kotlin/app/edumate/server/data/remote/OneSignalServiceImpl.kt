@@ -12,10 +12,9 @@ class OneSignalServiceImpl(
     override suspend fun send(notification: Notification): Boolean {
         return try {
             client.post(OneSignalService.NOTIFICATIONS) {
-                setBody(notification)
-                header("accept", ContentType.Application.Json)
-                header("Authorization", "Basic $apiKey")
                 contentType(ContentType.Application.Json)
+                header(HttpHeaders.Authorization, "Basic $apiKey")
+                setBody(notification)
             }
             true
         } catch (e: Exception) {

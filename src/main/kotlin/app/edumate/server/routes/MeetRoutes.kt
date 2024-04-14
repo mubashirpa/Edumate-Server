@@ -3,8 +3,11 @@ package app.edumate.server.routes
 import app.edumate.server.core.utils.DatabaseUtils
 import app.edumate.server.core.utils.DateTimeUtils
 import app.edumate.server.core.utils.FirebaseUtils
+import app.edumate.server.data.remote.OneSignalService
 import app.edumate.server.models.meet.Meet
 import app.edumate.server.models.meet.MeetState
+import app.edumate.server.models.notification.Notification
+import app.edumate.server.models.notification.NotificationMessage
 import app.edumate.server.plugins.Classroom
 import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.database.*
@@ -18,6 +21,8 @@ import kotlinx.coroutines.*
 fun Route.meetRouting(
     classroom: Classroom,
     database: FirebaseDatabase,
+    oneSignalAppId: String,
+    oneSignalService: OneSignalService,
 ) {
     val coursesStorage = classroom.coursesStorage
 
@@ -345,6 +350,22 @@ fun Route.meetRouting(
                 reference.updateChildrenAsync(updates).get()
 
                 call.respond(HttpStatusCode.OK)
+
+                val success =
+                    oneSignalService.send(
+                        Notification(
+                            appId = oneSignalAppId,
+                            contents = NotificationMessage(en = "New meeting has started"),
+                            headings = NotificationMessage(en = "Meeting started"),
+                            includedSegments = emptyList(),
+                            includeExternalUserIds = course.students?.map { it.userId.orEmpty() } ?: emptyList(),
+                        ),
+                    )
+                if (success) {
+                    println("Notification send successfully")
+                } else {
+                    println("Notification send failed")
+                }
             } else {
                 call.respondText(
                     text = "You don't have permission",
