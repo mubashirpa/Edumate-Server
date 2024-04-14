@@ -1,7 +1,8 @@
 package app.edumate.server.plugins
 
-import app.edumate.server.data.remote.OneSignalService
 import app.edumate.server.routes.*
+import app.edumate.server.services.OneSignalService
+import app.edumate.server.utils.Classroom
 import com.google.cloud.firestore.Firestore
 import com.google.firebase.database.FirebaseDatabase
 import io.ktor.server.application.*

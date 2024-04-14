@@ -1,4 +1,4 @@
-package app.edumate.server.core.utils
+package app.edumate.server.utils
 
 import app.edumate.server.models.classroom.courseWork.DueDate
 import app.edumate.server.models.classroom.courseWork.TimeOfDay

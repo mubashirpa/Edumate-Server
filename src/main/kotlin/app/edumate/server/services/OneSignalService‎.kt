@@ -1,4 +1,4 @@
-package app.edumate.server.data.remote
+package app.edumate.server.services
 
 import app.edumate.server.models.notification.Notification
 

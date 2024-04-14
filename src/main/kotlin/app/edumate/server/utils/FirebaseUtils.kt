@@ -1,4 +1,4 @@
-package app.edumate.server.core.utils
+package app.edumate.server.utils
 
 import com.google.firebase.auth.FirebaseAuth
 

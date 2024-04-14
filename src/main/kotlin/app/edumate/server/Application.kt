@@ -1,14 +1,12 @@
 package app.edumate.server
 
-import app.edumate.server.data.remote.OneSignalServiceImpl
 import app.edumate.server.plugins.*
-import com.google.firebase.cloud.FirestoreClient
+import app.edumate.server.services.OneSignalService
+import app.edumate.server.utils.Classroom
+import com.google.cloud.firestore.Firestore
 import com.google.firebase.database.FirebaseDatabase
-import io.ktor.client.*
-import io.ktor.client.engine.cio.*
-import io.ktor.client.plugins.contentnegotiation.*
-import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
+import org.koin.ktor.ext.inject
 
 fun main(args: Array<String>) {
     io.ktor.server.netty.EngineMain.main(args)
@@ -17,25 +15,21 @@ fun main(args: Array<String>) {
 fun Application.module() {
     configureCors()
     configureSerialization()
+    configureKoin()
     configureFirebase()
 
-    val client =
-        HttpClient(CIO) {
-            install(ContentNegotiation) {
-                json()
-            }
-        }
-    val oneSignalApiKey = environment.config.propertyOrNull("onesignal.api_key")?.getString().orEmpty()
-    val oneSignalAppId = environment.config.propertyOrNull("onesignal.app_id")?.getString().orEmpty()
-    val oneSignalService = OneSignalServiceImpl(client, oneSignalApiKey)
-    val firebaseFirestore = FirestoreClient.getFirestore()
-    val firebaseDatabase = FirebaseDatabase.getInstance()
-    val classroom = Classroom()
+    val oneSignalAppId =
+        environment.config.propertyOrNull("onesignal.app_id")?.getString()
+            ?: throw IllegalStateException("OneSignal app id not found")
+    val oneSignalService by inject<OneSignalService>()
+    val firestore by inject<Firestore>()
+    val firebaseDatabase by inject<FirebaseDatabase>()
+    val classroom by inject<Classroom>()
 
     configureRouting(
         classroom = classroom,
         firebaseDatabase = firebaseDatabase,
-        firestore = firebaseFirestore,
+        firestore = firestore,
         oneSignalAppId = oneSignalAppId,
         oneSignalService = oneSignalService,
     )

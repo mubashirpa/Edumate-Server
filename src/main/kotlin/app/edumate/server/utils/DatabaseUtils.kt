@@ -1,4 +1,4 @@
-package app.edumate.server.core.utils
+package app.edumate.server.utils
 
 object DatabaseUtils {
     fun generateId(length: Int): String {

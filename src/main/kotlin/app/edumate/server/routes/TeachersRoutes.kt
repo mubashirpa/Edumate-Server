@@ -1,12 +1,12 @@
 package app.edumate.server.routes
 
-import app.edumate.server.core.utils.FirebaseUtils
-import app.edumate.server.core.utils.ListUtils
 import app.edumate.server.models.classroom.courses.Course
 import app.edumate.server.models.classroom.teachers.Teacher
 import app.edumate.server.models.classroom.teachers.TeachersDto
 import app.edumate.server.models.userProfiles.UserProfile
-import app.edumate.server.plugins.Classroom
+import app.edumate.server.utils.Classroom
+import app.edumate.server.utils.FirebaseUtils
+import app.edumate.server.utils.ListUtils
 import com.google.firebase.auth.FirebaseAuthException
 import io.ktor.http.*
 import io.ktor.server.application.*

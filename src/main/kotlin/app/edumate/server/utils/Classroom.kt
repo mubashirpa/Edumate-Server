@@ -1,4 +1,4 @@
-package app.edumate.server.plugins
+package app.edumate.server.utils
 
 import app.edumate.server.models.classroom.courses.Course
 import app.edumate.server.models.userProfiles.UserProfile

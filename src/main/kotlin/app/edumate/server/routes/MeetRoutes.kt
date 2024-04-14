@@ -1,14 +1,14 @@
 package app.edumate.server.routes
 
-import app.edumate.server.core.utils.DatabaseUtils
-import app.edumate.server.core.utils.DateTimeUtils
-import app.edumate.server.core.utils.FirebaseUtils
-import app.edumate.server.data.remote.OneSignalService
 import app.edumate.server.models.meet.Meet
 import app.edumate.server.models.meet.MeetState
 import app.edumate.server.models.notification.Notification
 import app.edumate.server.models.notification.NotificationMessage
-import app.edumate.server.plugins.Classroom
+import app.edumate.server.services.OneSignalService
+import app.edumate.server.utils.Classroom
+import app.edumate.server.utils.DatabaseUtils
+import app.edumate.server.utils.DateTimeUtils
+import app.edumate.server.utils.FirebaseUtils
 import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.database.*
 import io.ktor.http.*

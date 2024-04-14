@@ -1,11 +1,11 @@
 package app.edumate.server.routes
 
-import app.edumate.server.core.utils.DatabaseUtils
-import app.edumate.server.core.utils.DateTimeUtils
-import app.edumate.server.core.utils.FirebaseUtils
 import app.edumate.server.models.classroom.AssigneeMode
 import app.edumate.server.models.classroom.courseWork.*
-import app.edumate.server.plugins.Classroom
+import app.edumate.server.utils.Classroom
+import app.edumate.server.utils.DatabaseUtils
+import app.edumate.server.utils.DateTimeUtils
+import app.edumate.server.utils.FirebaseUtils
 import com.google.cloud.firestore.DocumentReference
 import com.google.cloud.firestore.Firestore
 import com.google.firebase.auth.FirebaseAuthException
