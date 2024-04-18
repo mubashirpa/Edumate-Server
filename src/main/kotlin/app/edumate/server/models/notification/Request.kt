@@ -4,13 +4,15 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Notification(
+data class Request(
     @SerialName("app_id")
     val appId: String,
-    val contents: NotificationMessage,
-    val headings: NotificationMessage,
     @SerialName("included_segments")
     val includedSegments: List<String>,
-    @SerialName("include_external_user_ids")
-    val includeExternalUserIds: List<String>,
+    @SerialName("include_aliases")
+    val includeAliases: Aliases,
+    @SerialName("target_channel")
+    val targetChannel: String,
+    val contents: Message,
+    val headings: Message,
 )
