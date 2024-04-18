@@ -63,6 +63,12 @@ fun Route.teachersRouting(classroom: Classroom) {
                     text = "No course with id $courseId",
                     status = HttpStatusCode.NotFound,
                 )
+            val newTeacher =
+                Teacher(
+                    courseId = courseId,
+                    profile = usersStorage.find { it.id == teacher.userId },
+                    userId = teacher.userId,
+                )
 
             if (course.teachers?.any { it.userId == teacher.userId } == true) {
                 call.respondText(
@@ -73,11 +79,11 @@ fun Route.teachersRouting(classroom: Classroom) {
                 if (course.teachers == null) {
                     course.teachers = mutableListOf()
                 }
-                course.teachers?.add(Teacher(userId = teacher.userId))
+                course.teachers?.add(teacher)
 
                 call.respond(
                     status = HttpStatusCode.Created,
-                    message = teacher,
+                    message = newTeacher,
                 )
             }
         }
