@@ -3,6 +3,10 @@ package app.edumate.server.routes
 import app.edumate.server.models.classroom.courseWork.CourseWork
 import app.edumate.server.models.classroom.courseWork.CourseWorkType
 import app.edumate.server.models.classroom.studentSubmissions.*
+import app.edumate.server.models.notification.Aliases
+import app.edumate.server.models.notification.Message
+import app.edumate.server.models.notification.Request
+import app.edumate.server.services.OneSignalService
 import app.edumate.server.utils.Classroom
 import app.edumate.server.utils.DateTimeUtils
 import app.edumate.server.utils.FirebaseUtils
@@ -20,6 +24,8 @@ import kotlinx.serialization.Serializable
 fun Route.studentSubmissionsRouting(
     classroom: Classroom,
     firestore: Firestore,
+    oneSignalAppId: String,
+    oneSignalService: OneSignalService,
 ) {
     val coursesStorage = classroom.coursesStorage
     val usersStorage = classroom.usersStorage
@@ -547,19 +553,17 @@ fun Route.studentSubmissionsRouting(
                     status = HttpStatusCode.NotFound,
                 )
             val courseWorkDocument = courseWorkDatabase(firestore, courseId, courseWorkId).get().get()
-            if (!courseWorkDocument.exists()) {
-                return@post call.respondText(
+            val courseWork =
+                courseWorkDocument.toObject(CourseWork::class.java) ?: return@post call.respondText(
                     text = "No course work with id $courseWorkId",
                     status = HttpStatusCode.NotFound,
                 )
-            }
             val document = studentSubmissionDatabase(firestore, courseId, courseWorkId, id)
-            if (!document.get().get().exists()) {
-                return@post call.respondText(
+            val studentSubmission =
+                document.get().get().toObject(StudentSubmission::class.java) ?: return@post call.respondText(
                     text = "No student submission with id $id",
                     status = HttpStatusCode.NotFound,
                 )
-            }
             val havePermission = course.teachers?.any { it.userId == userId } == true
 
             if (havePermission) {
@@ -570,6 +574,26 @@ fun Route.studentSubmissionsRouting(
                 document.update(updates).get()
 
                 call.respond(HttpStatusCode.OK)
+
+                oneSignalService.send(
+                    Request(
+                        appId = oneSignalAppId,
+                        includedSegments = emptyList(),
+                        includeAliases =
+                            Aliases(
+                                externalId =
+                                    studentSubmission.userId?.let { submittedUserId ->
+                                        listOf(submittedUserId)
+                                    } ?: emptyList(),
+                            ),
+                        targetChannel = "Submissions",
+                        contents =
+                            Message(
+                                en = "Your teacher has returned and graded the classwork (${courseWork.title}) for the ${course.name} class. Check your feedback and continue learning.",
+                            ),
+                        headings = Message(en = "Classwork Graded!"),
+                    ),
+                )
             } else {
                 call.respondText(
                     text = "You don't have permission",
@@ -626,10 +650,11 @@ fun Route.studentSubmissionsRouting(
                     status = HttpStatusCode.BadRequest,
                 )
 
-            coursesStorage.find { it.id == courseId } ?: return@post call.respondText(
-                text = "No course with id $courseId",
-                status = HttpStatusCode.NotFound,
-            )
+            val course =
+                coursesStorage.find { it.id == courseId } ?: return@post call.respondText(
+                    text = "No course with id $courseId",
+                    status = HttpStatusCode.NotFound,
+                )
             val courseWorkDocument = courseWorkDatabase(firestore, courseId, courseWorkId).get().get()
             val courseWork =
                 courseWorkDocument.toObject(CourseWork::class.java) ?: return@post call.respondText(
@@ -666,6 +691,42 @@ fun Route.studentSubmissionsRouting(
                 document.update(updates).get()
 
                 call.respond(HttpStatusCode.OK)
+
+                val externalIds = course.teachers?.mapNotNull { it.userId } ?: emptyList()
+                val student = usersStorage.find { it.id == userId }
+                val heading: String?
+                val content: String?
+                when (courseWork.workType) {
+                    CourseWorkType.ASSIGNMENT -> {
+                        heading = "Assignment Submitted by Student!"
+                        content =
+                            "${student?.name?.fullName} has submitted the assignment (${courseWork.title}) for the ${course.name} class. Please review and provide feedback accordingly."
+                    }
+
+                    CourseWorkType.MULTIPLE_CHOICE_QUESTION, CourseWorkType.SHORT_ANSWER_QUESTION -> {
+                        heading = "Question Answered by Student!"
+                        content =
+                            "${student?.name?.fullName} has provided an answer to the question (${courseWork.title}) posted in the ${course.name} class. Please review and engage with the response as needed."
+                    }
+
+                    else -> {
+                        heading = null
+                        content = null
+                    }
+                }
+
+                if (heading != null && content != null) {
+                    oneSignalService.send(
+                        Request(
+                            appId = oneSignalAppId,
+                            includedSegments = emptyList(),
+                            includeAliases = Aliases(externalId = externalIds),
+                            targetChannel = "Submissions",
+                            contents = Message(en = content),
+                            headings = Message(en = heading),
+                        ),
+                    )
+                }
             } else {
                 call.respondText(
                     text = "You don't have permission",

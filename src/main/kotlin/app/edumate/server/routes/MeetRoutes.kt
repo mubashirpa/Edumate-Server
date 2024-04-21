@@ -2,8 +2,9 @@ package app.edumate.server.routes
 
 import app.edumate.server.models.meet.Meet
 import app.edumate.server.models.meet.MeetState
-import app.edumate.server.models.notification.Notification
-import app.edumate.server.models.notification.NotificationMessage
+import app.edumate.server.models.notification.Aliases
+import app.edumate.server.models.notification.Message
+import app.edumate.server.models.notification.Request
 import app.edumate.server.services.OneSignalService
 import app.edumate.server.utils.Classroom
 import app.edumate.server.utils.DatabaseUtils
@@ -351,21 +352,22 @@ fun Route.meetRouting(
 
                 call.respond(HttpStatusCode.OK)
 
-                val success =
-                    oneSignalService.send(
-                        Notification(
-                            appId = oneSignalAppId,
-                            contents = NotificationMessage(en = "New meeting has started"),
-                            headings = NotificationMessage(en = "Meeting started"),
-                            includedSegments = emptyList(),
-                            includeExternalUserIds = course.students?.map { it.userId.orEmpty() } ?: emptyList(),
-                        ),
-                    )
-                if (success) {
-                    println("Notification send successfully")
-                } else {
-                    println("Notification send failed")
-                }
+                oneSignalService.send(
+                    Request(
+                        appId = oneSignalAppId,
+                        includedSegments = emptyList(),
+                        includeAliases =
+                            Aliases(
+                                externalId = course.students?.mapNotNull { it.userId } ?: emptyList(),
+                            ),
+                        targetChannel = "Meetings",
+                        contents =
+                            Message(
+                                en = "Your teacher has started a live class for your ${course.name}. Join now to participate and engage in the lesson.",
+                            ),
+                        headings = Message(en = "Live Class in Session!"),
+                    ),
+                )
             } else {
                 call.respondText(
                     text = "You don't have permission",

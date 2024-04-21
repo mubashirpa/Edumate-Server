@@ -2,6 +2,10 @@ package app.edumate.server.routes
 
 import app.edumate.server.models.classroom.AssigneeMode
 import app.edumate.server.models.classroom.courseWork.*
+import app.edumate.server.models.notification.Aliases
+import app.edumate.server.models.notification.Message
+import app.edumate.server.models.notification.Request
+import app.edumate.server.services.OneSignalService
 import app.edumate.server.utils.Classroom
 import app.edumate.server.utils.DatabaseUtils
 import app.edumate.server.utils.DateTimeUtils
@@ -18,8 +22,11 @@ import io.ktor.server.routing.*
 fun Route.courseWorkRouting(
     classroom: Classroom,
     firestore: Firestore,
+    oneSignalAppId: String,
+    oneSignalService: OneSignalService,
 ) {
     val coursesStorage = classroom.coursesStorage
+    val usersStorage = classroom.usersStorage
 
     route("/v1/courses/{courseId}/courseWork") {
         post {
@@ -134,6 +141,40 @@ fun Route.courseWorkRouting(
                 call.respond(
                     status = HttpStatusCode.Created,
                     message = newCourseWork,
+                )
+
+                val externalIds = course.students?.mapNotNull { it.userId } ?: emptyList()
+                val owner = usersStorage.find { it.id == userId }
+                val heading: String
+                val content: String
+                when (workType) {
+                    CourseWorkType.ASSIGNMENT -> {
+                        heading = "${owner?.name?.fullName} Posted a New Assignment!"
+                        content =
+                            "A new assignment for your ${course.name} class has been posted by your teacher. Check it out and submit your work before the deadline."
+                    }
+
+                    CourseWorkType.MULTIPLE_CHOICE_QUESTION, CourseWorkType.SHORT_ANSWER_QUESTION -> {
+                        heading = "${owner?.name?.fullName} Posted a New Question!"
+                        content =
+                            "Your teacher has posted a new question for your ${course.name} class. Take a moment to answer and participate in the discussion."
+                    }
+
+                    else -> {
+                        heading = "${owner?.name?.fullName} Uploaded New Study Material!"
+                        content =
+                            "Your teacher has uploaded new study material for your ${course.name} class. Access it now to enhance your understanding of the topic."
+                    }
+                }
+                oneSignalService.send(
+                    Request(
+                        appId = oneSignalAppId,
+                        includedSegments = emptyList(),
+                        includeAliases = Aliases(externalId = externalIds),
+                        targetChannel = "Classwork",
+                        contents = Message(en = content),
+                        headings = Message(en = heading),
+                    ),
                 )
             } else {
                 call.respondText(
