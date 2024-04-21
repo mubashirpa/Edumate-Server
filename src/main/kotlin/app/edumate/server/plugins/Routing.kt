@@ -17,11 +17,12 @@ fun Application.configureRouting(
 ) {
     routing {
         announcementsRouting(classroom, firestore)
-        courseWorkRouting(classroom, firestore)
+        courseWorkRouting(classroom, firestore, oneSignalAppId, oneSignalService)
         coursesRouting(classroom)
         meetRouting(classroom, firebaseDatabase, oneSignalAppId, oneSignalService)
-        studentSubmissionsRouting(classroom, firestore)
+        studentSubmissionsRouting(classroom, firestore, oneSignalAppId, oneSignalService)
         studentsRouting(classroom)
         teachersRouting(classroom)
+        usersRoutes(classroom)
     }
 }

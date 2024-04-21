@@ -18,9 +18,7 @@ fun Application.module() {
     configureKoin()
     configureFirebase()
 
-    val oneSignalAppId =
-        environment.config.propertyOrNull("onesignal.app_id")?.getString()
-            ?: throw IllegalStateException("OneSignal app id not found")
+    val oneSignalAppId = System.getenv("ONE_SIGNAL_APP_ID") ?: throw IllegalStateException("OneSignal app id not found")
     val oneSignalService by inject<OneSignalService>()
     val firestore by inject<Firestore>()
     val firebaseDatabase by inject<FirebaseDatabase>()

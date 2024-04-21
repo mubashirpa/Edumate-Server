@@ -3,11 +3,11 @@ package app.edumate.server.plugins
 import com.google.auth.oauth2.GoogleCredentials
 import com.google.firebase.FirebaseApp
 import com.google.firebase.FirebaseOptions
-import io.ktor.server.application.*
 import java.io.FileInputStream
 
-fun Application.configureFirebase() {
-    val databaseUrl = environment.config.propertyOrNull("firebase.database_url")?.getString().orEmpty()
+fun configureFirebase() {
+    val databaseUrl =
+        System.getenv("FIREBASE_DATABASE_URL") ?: throw IllegalStateException("Firebase database url not found")
     val refreshToken = FileInputStream("src/main/resources/edu-mate-app-firebase-adminsdk.json")
 
     val options =
