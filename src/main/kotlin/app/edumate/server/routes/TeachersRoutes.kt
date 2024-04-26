@@ -63,6 +63,9 @@ fun Route.teachersRouting(classroom: Classroom) {
                     text = "No course with id $courseId",
                     status = HttpStatusCode.NotFound,
                 )
+            val alreadyMember =
+                course.students?.any { it.userId == teacher.userId } == true ||
+                    course.teachers?.any { it.userId == teacher.userId } == true
             val newTeacher =
                 Teacher(
                     courseId = courseId,
@@ -70,7 +73,7 @@ fun Route.teachersRouting(classroom: Classroom) {
                     userId = teacher.userId,
                 )
 
-            if (course.teachers?.any { it.userId == teacher.userId } == true) {
+            if (alreadyMember) {
                 call.respondText(
                     text = "User is already a member of this course",
                     status = HttpStatusCode.Conflict,
